@@ -8,7 +8,7 @@ import { AxiosResponseType, Record, Records, fetchDataType } from "./types";
 import { prisma } from "./prism";
 
 
-// Schedule the main function to run every second
+// Schedule the main function to run first day of every month
 cron.schedule('0 0 1 * *', main);
 
 async function main() {
