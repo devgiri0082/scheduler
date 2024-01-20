@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model Broker {
+  id            Int              @id @default(autoincrement())
+  createdAt     DateTime         @default(now())
+  lastUpdate    DateTime?
+  city          String
+  licenseNumber Int              @unique
+  name          String
+  activities    BrokerActivity[]
+}
+
+model BrokerActivity {
+  id       Int     @id @default(autoincrement())
+  year     Int
+  month    Int
+  isActive Boolean
+  brokerId Int
+  broker   Broker  @relation(fields: [brokerId], references: [id])
+
+  @@unique([brokerId, year, month])
+  @@index([brokerId, year, month])
+}

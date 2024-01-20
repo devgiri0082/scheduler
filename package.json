@@ -1,0 +1,25 @@
+{
+  "name": "get_data",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "generate": "npx prisma generate",
+    "push": "npx prisma db push",
+    "prestart": "tsc",
+    "start": "node ./dist/index.js"
+  },
+  "dependencies": {
+    "@prisma/client": "5.8.1",
+    "axios": "^1.6.5",
+    "dotenv": "^16.3.1",
+    "node-cron": "^3.0.3",
+    "typescript": "^5.3.3",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.5",
+    "@types/node-cron": "^3.0.11",
+    "prisma": "^5.8.1"
+  }
+}
