@@ -8,7 +8,9 @@
     "push": "npx prisma db push",
     "prestart": "tsc",
     "start": "node ./dist/index.js",
-    "postinstall": "npm run generate"
+    "postinstall": "npm run generate",
+    "pretest": "tsc",
+    "test": "node ./dist/test.js"
   },
   "dependencies": {
     "@prisma/client": "5.8.1",
@@ -21,6 +23,7 @@
   "devDependencies": {
     "@types/node": "^20.11.5",
     "@types/node-cron": "^3.0.11",
+    "jest": "^29.7.0",
     "prisma": "^5.8.1"
   }
 }

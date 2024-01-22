@@ -40,3 +40,12 @@ export type fetchDataType = {
 }
 export type Record = z.infer<typeof RecordType>;
 export type Records = Record[];
+
+export type DataSet = {
+  currentMonthData: Records,
+  currentMonth: number,
+  currentYear: number,
+  nextMonthData: Records,
+  nextMonth: number,
+  nextYear: number
+}

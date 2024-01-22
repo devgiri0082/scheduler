@@ -5,7 +5,7 @@ import fs from 'fs/promises';
 
 import cron from 'node-cron';
 import { AxiosResponseType, Record, Records, fetchDataType } from "./types";
-import { prisma } from "./prism";
+import { prisma } from "./prisma";
 
 
 // Schedule the main function to run first day of every month
@@ -26,9 +26,24 @@ async function main() {
     });
     await createBrokerActivityForCurrentMonth(allRecordObjs);
     await createNewBrokersAndActivities(Object.values(allRecordObjs));
+    await revalidate();
   } catch (e: any) {
     console.log(e);
   }
+}
+
+// post request to the api localhost:3000/api/revalidate
+//add bearer token to the request
+
+async function revalidate() {
+  const token = process.env.REVALIDATION_TOKEN;
+  console.log({ token });
+  const res = await axios.post('http://localhost:3000/api/revalidate', {}, {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  })
+  console.log(res.data);
 }
 
 
